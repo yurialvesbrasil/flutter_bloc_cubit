@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
+import 'presentation/router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(TodoApp(
+    router: AppRouter(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TodoApp extends StatelessWidget {
+  final AppRouter router;
+
+  const TodoApp({super.key, required this.router});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Bloc Cubit',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.yellow,
-        ),
-        home: Scaffold(
-            appBar: AppBar(
-              title: const Text('Flutter Bloc Cubit'),
-            ),
-            body: const Center(
-              child: Text('Home page'),
-            )));
+      title: 'Flutter Bloc Cubit',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.yellow,
+      ),
+      onGenerateRoute: router.generateRoute,
+    );
   }
 }
